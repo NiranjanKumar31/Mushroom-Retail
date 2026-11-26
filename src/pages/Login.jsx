@@ -26,11 +26,11 @@ function Login() {
 
           <input
             type="password"
-            placeholder="Enter Password"
+            placeholder="Enter Pass"
             required
           />
 
-          <button type="submit">Login</button>
+          <button type="submit">Login  </button>
         </form>
       </div>
 
