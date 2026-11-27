@@ -26,7 +26,7 @@ function Login() {
 
           <input
             type="password"
-            placeholder="Enter Pass"
+            placeholder="Enter Password"
             required
           />
 
