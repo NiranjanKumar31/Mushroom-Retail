@@ -3,34 +3,66 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link
+  Navigate
 } from "react-router-dom";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
-function Dashboard() {
-  return (
-    <div className="container">
-      <div className="form-box">
-        <h1>Mushroom Retail</h1>
-        <h2>Dashboard</h2>
-        <p>Welcome to Mushroom Retail Management!</p>
-        <Link to="/login">Logout</Link>
-      </div>
-    </div>
-  );
+// Protected route
+function ProtectedRoute({ children }) {
+
+  const isLoggedIn =
+    sessionStorage.getItem("isLoggedIn") === "true";
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
 }
 
 function App() {
+
   return (
+
     <BrowserRouter>
+
       <Routes>
-        <Route path="/" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Register page */}
+        <Route
+          path="/"
+          element={<Register />}
+        />
+
+        {/* Login page */}
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        {/* Dashboard page */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Invalid URL */}
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
+        />
+
       </Routes>
+
     </BrowserRouter>
+
   );
 }
 

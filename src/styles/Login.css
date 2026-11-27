@@ -1,4 +1,6 @@
 
+/* Common CSS */
+
 * {
   margin: 0;
   padding: 0;
@@ -7,77 +9,258 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #edf5eb;
 }
 
-.container {
+
+/* Register Page */
+
+.register-container {
   min-height: 100vh;
+  width: 100%;
+  background-color: #ffd6aa;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
-.form-box {
-  background: white;
-  width: 100%;
-  max-width: 420px;
-  padding: 35px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  text-align: center;
+.register-card {
+  width: 370px;
+  min-height: 542px;
+  background-color: #fff9bf;
+
+  border-radius: 18px;
+  padding: 55px 35px 35px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
 }
 
-.form-box h1 {
-  color: #286b36;
-  font-size: 25px;
-  margin-bottom: 20px;
-}
-
-.form-box h2 {
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.form-box p {
-  color: #777;
-  margin-bottom: 20px;
-}
-
-.form-box input {
-  width: 100%;
-  padding: 13px;
+.register-card h1 {
+  font-size: 55px;
+  font-weight: 500;
+  color: #1760ff;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 7px;
+}
+
+.register-card input {
+  width: 100%;
+  height: 55px;
+  padding: 12px;
+  font-size: 17px;
+
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 17px;
   outline: none;
 }
 
-.form-box input:focus {
-  border-color: #328c45;
+.register-card input:focus {
+  border: 2px solid #1760ff;
 }
 
-.form-box button {
-  width: 100%;
-  padding: 13px;
-  background: #328c45;
+.register-card button {
+  width: 120px;
+  height: 55px;
+  margin-top: 8px;
+
+  background-color: #3180f5;
   color: white;
+
   border: none;
-  border-radius: 7px;
+  border-radius: 17px;
+  font-size: 19px;
   cursor: pointer;
-  font-size: 16px;
 }
 
-.form-box button:hover {
-  background: #246c34;
+.register-card button:hover {
+  background-color: #1760ff;
 }
 
-.form-box a {
-  color: #328c45;
+
+/* Login Page */
+
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffd6aa;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 370px;
+  min-height: 400px;
+  background-color: #fff9bf;
+
+  border-radius: 18px;
+  padding: 60px 35px 35px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
+}
+
+.login-card h1 {
+  font-size: 55px;
+  font-weight: 500;
+  color: #1760ff;
+  margin-bottom: 15px;
+}
+
+.login-card input {
+  width: 100%;
+  height: 58px;
+  padding: 12px;
+  font-size: 18px;
+
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 17px;
+  outline: none;
+}
+
+.login-card input:focus {
+  border: 2px solid #1760ff;
+}
+
+.login-card button {
+  width: 120px;
+  height: 55px;
+  margin-top: 8px;
+
+  background-color: #3180f5;
+  color: white;
+
+  border: none;
+  border-radius: 17px;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.login-card button:hover {
+  background-color: #1760ff;
+}
+
+
+/* Links */
+
+.form-link {
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: center;
+  color: #444;
+}
+
+.form-link a {
+  color: #1760ff;
   text-decoration: none;
   font-weight: bold;
 }
 
-.form-box a:hover {
+.form-link a:hover {
   text-decoration: underline;
+}
+
+
+/* Error Messages */
+
+.error-message {
+  width: 100%;
+  color: red;
+  font-size: 12px;
+  text-align: left;
+}
+
+
+/* Dashboard */
+
+.dashboard-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffd6aa;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-card {
+  width: 450px;
+  padding: 50px;
+
+  background-color: #fff9bf;
+  border-radius: 18px;
+  text-align: center;
+
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-card h1 {
+  color: #1760ff;
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+
+.dashboard-card h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.dashboard-card p {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.dashboard-card button {
+  padding: 13px 30px;
+  background-color: #3180f5;
+  color: white;
+
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dashboard-card button:hover {
+  background-color: #1760ff;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 450px) {
+
+  .register-card,
+  .login-card {
+    width: 95%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .register-card h1,
+  .login-card h1 {
+    font-size: 45px;
+  }
+
+  .register-card input,
+  .login-card input {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .dashboard-card {
+    width: 95%;
+    padding: 30px 20px;
+  }
 }

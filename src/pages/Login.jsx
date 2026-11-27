@@ -1,73 +1,110 @@
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import "../styles/Login.css";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginschema } from "../components/formschema/loginschema";
 
 function Login() {
+
   const navigate = useNavigate();
 
-  const [formdata, setFormdata] = useState({
-    email: "",
-    password: ""
+  // Initialize Login form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: zodResolver(loginschema),
+    defaultValues: {
+      email: "",
+      password: ""
+    }
   });
 
-  function handleChange(e) {
-    setFormdata({
-      ...formdata,
-      [e.target.name]: e.target.value
-    });
-  }
+  // Handle login submission
+  function onSubmit(data) {
 
-  function handleSubmit(e) {
-    e.preventDefault();
+    // Get registered user details
+    const savedUser = localStorage.getItem("user");
 
-    const savedUser = JSON.parse(
-      localStorage.getItem("user")
-    );
+    // Check whether user exists
+    if (!savedUser) {
+      alert("Please register first!");
+      navigate("/");
+      return;
+    }
 
+    // Convert JSON string into object
+    const user = JSON.parse(savedUser);
+
+    // Compare email and password
     if (
-      savedUser &&
-      savedUser.email === formdata.email &&
-      savedUser.password === formdata.password
+      user.email === data.email &&
+      user.password === data.password
     ) {
-      alert("Login successful!");
+
+      // Save login status
+      sessionStorage.setItem("isLoggedIn", "true");
+
+      alert("Login Successful!");
+
       navigate("/dashboard");
+
     } else {
+
       alert("Invalid email or password!");
+
     }
   }
 
   return (
-    <div className="container">
-      <form className="form-box" onSubmit={handleSubmit}>
-        <h1> Mushroom Retail</h1>
-        <p>Login to your account</p>
+    <div className="login-container">
 
+      <form
+        className="login-card"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+
+        <h1>Login</h1>
+
+        {/* Email */}
         <input
           type="email"
-          name="email"
           placeholder="Enter your email"
-          value={formdata.email}
-          onChange={handleChange}
-          required
+          {...register("email")}
         />
 
+        {errors.email && (
+          <p className="error-message">
+            {errors.email.message}
+          </p>
+        )}
+
+        {/* Password */}
         <input
           type="password"
-          name="password"
           placeholder="Enter your password"
-          value={formdata.password}
-          onChange={handleChange}
-          required
+          {...register("password")}
         />
 
-        <button type="submit">Login</button>
+        {errors.password && (
+          <p className="error-message">
+            {errors.password.message}
+          </p>
+        )}
 
-        <p>
+        <button type="submit">
+          Login
+        </button>
+
+        <p className="form-link">
           Don't have an account?
           <Link to="/"> Register</Link>
         </p>
+
       </form>
+
     </div>
   );
 }

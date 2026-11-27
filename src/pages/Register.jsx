@@ -1,95 +1,114 @@
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import "../styles/Login.css";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerschema } from "../components/formschema/registerschema";
 
 function Register() {
+
   const navigate = useNavigate();
 
-  const [formdata, setFormdata] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+  // Initialize React Hook Form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: zodResolver(registerschema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      age: ""
+    }
   });
 
-  function handleChange(e) {
-    setFormdata({
-      ...formdata,
-      [e.target.name]: e.target.value
-    });
-  }
+  // Handle registration
+  function onSubmit(data) {
 
-  function handleSubmit(e) {
-    e.preventDefault();
+    // Save user information
+    localStorage.setItem("user", JSON.stringify(data));
 
-    if (formdata.password !== formdata.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
+    alert("Registration Successful!");
 
-    if (formdata.password.length < 6) {
-      alert("Password must contain at least 6 characters");
-      return;
-    }
-
-    localStorage.setItem("user", JSON.stringify(formdata));
-
-    alert("Registration successful!");
-
+    // Navigate to Login
     navigate("/login");
   }
 
   return (
-    <div className="container">
-      <form className="form-box" onSubmit={handleSubmit}>
-        <h1>Mushroom Retail</h1>
-        <h2>Create Account</h2>
-        <p>Register to manage your mushroom store</p>
+    <div className="register-container">
 
+      <form
+        className="register-card"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+
+        <h1>Register</h1>
+
+        {/* Name */}
         <input
           type="text"
-          name="name"
           placeholder="Enter your name"
-          value={formdata.name}
-          onChange={handleChange}
-          required
+          {...register("name")}
         />
 
+        {errors.name && (
+          <p className="error-message">
+            {errors.name.message}
+          </p>
+        )}
+
+        {/* Email */}
         <input
           type="email"
-          name="email"
           placeholder="Enter your email"
-          value={formdata.email}
-          onChange={handleChange}
-          required
+          {...register("email")}
         />
 
+        {errors.email && (
+          <p className="error-message">
+            {errors.email.message}
+          </p>
+        )}
+
+        {/* Password */}
         <input
           type="password"
-          name="password"
-          placeholder="Enter password"
-          value={formdata.password}
-          onChange={handleChange}
-          required
+          placeholder="Enter your password"
+          {...register("password")}
         />
 
+        {errors.password && (
+          <p className="error-message">
+            {errors.password.message}
+          </p>
+        )}
+
+        {/* Age */}
         <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm password"
-          value={formdata.confirmPassword}
-          onChange={handleChange}
-          required
+          type="number"
+          placeholder="Enter your age"
+          {...register("age")}
         />
 
-        <button type="submit">Register</button>
+        {errors.age && (
+          <p className="error-message">
+            {errors.age.message}
+          </p>
+        )}
 
-        <p>
+        <button type="submit">
+          Submit
+        </button>
+
+        <p className="form-link">
           Already have an account?
           <Link to="/login"> Login</Link>
         </p>
+
       </form>
+
     </div>
   );
 }
