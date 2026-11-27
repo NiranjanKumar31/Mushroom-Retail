@@ -9,7 +9,7 @@ function Login() {
 
   const navigate = useNavigate();
 
-  // Initialize Login form
+
   const {
     register,
     handleSubmit,
@@ -22,29 +22,28 @@ function Login() {
     }
   });
 
-  // Handle login submission
+ 
   function onSubmit(data) {
 
-    // Get registered user details
+   
     const savedUser = localStorage.getItem("user");
 
-    // Check whether user exists
+    
     if (!savedUser) {
       alert("Please register first!");
       navigate("/");
       return;
     }
 
-    // Convert JSON string into object
     const user = JSON.parse(savedUser);
 
-    // Compare email and password
+    
     if (
       user.email === data.email &&
       user.password === data.password
     ) {
 
-      // Save login status
+     
       sessionStorage.setItem("isLoggedIn", "true");
 
       alert("Login Successful!");
@@ -68,7 +67,7 @@ function Login() {
 
         <h1>Login</h1>
 
-        {/* Email */}
+       
         <input
           type="email"
           placeholder="Enter your email"
@@ -81,7 +80,6 @@ function Login() {
           </p>
         )}
 
-        {/* Password */}
         <input
           type="password"
           placeholder="Enter your password"
