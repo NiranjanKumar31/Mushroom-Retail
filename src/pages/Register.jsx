@@ -31,7 +31,7 @@ function Register() {
 
         <h1>Register</h1>
 
-        <input type="text" placeholder="Enter your name" {...register("name")} />
+        <input type="text" placeholder="Enter your text" {...register("name")} />
         {errors.name && <p className="error-message">{errors.name.message}</p>}
 
         <input type="email" placeholder="Enter your email" {...register("email")} />
