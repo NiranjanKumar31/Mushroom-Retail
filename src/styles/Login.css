@@ -1,5 +1,5 @@
 
-/* Common CSS */
+
 
 * {
   margin: 0;
@@ -11,8 +11,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-
-/* Register Page */
 
 .register-container {
   min-height: 100vh;
@@ -82,7 +80,7 @@ body {
 }
 
 
-/* Login Page */
+
 
 .login-container {
   min-height: 100vh;
@@ -152,7 +150,7 @@ body {
 }
 
 
-/* Links */
+
 
 .form-link {
   margin-top: 12px;
@@ -172,7 +170,7 @@ body {
 }
 
 
-/* Error Messages */
+
 
 .error-message {
   width: 100%;
@@ -182,7 +180,7 @@ body {
 }
 
 
-/* Dashboard */
+
 
 .dashboard-container {
   min-height: 100vh;
@@ -237,7 +235,7 @@ body {
 }
 
 
-/* Responsive Design */
+
 
 @media (max-width: 450px) {
 

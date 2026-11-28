@@ -10,7 +10,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 
-// Protected route
+
 function ProtectedRoute({ children }) {
 
   const isLoggedIn =
@@ -31,19 +31,18 @@ function App() {
 
       <Routes>
 
-        {/* Register page */}
+        
         <Route
           path="/"
           element={<Register />}
         />
 
-        {/* Login page */}
+      
         <Route
           path="/login"
           element={<Login />}
         />
 
-        {/* Dashboard page */}
         <Route
           path="/dashboard"
           element={
@@ -53,7 +52,7 @@ function App() {
           }
         />
 
-        {/* Invalid URL */}
+     
         <Route
           path="*"
           element={<Navigate to="/" replace />}
